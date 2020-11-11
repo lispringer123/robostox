@@ -22,12 +22,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.post('/stock_buy', function(req, res, next){
+app.post('/alerts', function(req, res, next){
   console.log('!!! headers', req.headers)
   console.log('!!! incoming', req.body)
   res.status(200)
   res.end()
 })
+
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
