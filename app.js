@@ -44,28 +44,21 @@ app.use(router);
 
 // made this with Terra but it did not work
 async function orderMaker(tradeInfo){
-  try {
-    await alpaca.createOrder({
-      symbol: tradeInfo["symbol"], // any valid ticker symbol
-      qty: tradeInfo['qty'],
-      side: 'buy',
-      type: 'market',
-      time_in_force: 'gtc',
-      order_class: 'bracket',
-      take_profit: {
-        limit_price: tradeInfo["limit_price"] * 1.05,
-      },
-      stop_loss: {
-        stop_price: tradeInfo["limit_price"] * 0.95,
-        limit_price: tradeInfo["limit_price"] * 0.94
-      }
-    })
-    log(`Market order of | ${quantity} ${stock} ${side} | completed.`)
-    resolve(true)
-  } catch (err) {
-    log(`Order of | ${quantity} ${stock} ${side} | did not go through.`)
-    resolve(false)
-  }
+  await alpaca.createOrder({
+    symbol: tradeInfo["symbol"], // any valid ticker symbol
+    qty: tradeInfo['qty'],
+    side: 'buy',
+    type: 'market',
+    time_in_force: 'gtc',
+    order_class: 'bracket',
+    take_profit: {
+      limit_price: tradeInfo["limit_price"] * 1.05,
+    },
+    stop_loss: {
+      stop_price: tradeInfo["limit_price"] * 0.95,
+      limit_price: tradeInfo["limit_price"] * 0.94
+    }
+  })
 }
 
 
