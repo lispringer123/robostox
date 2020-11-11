@@ -39,3 +39,17 @@ order {{strategy.order.action}}
     "limit_price": "{{strategy.order.price}}"
   }
 }
+
+
+/////
+
+{
+side: 'buy',
+symbol: 'EURUSD',
+type: 'market',
+qty: '2',
+time_in_force: 'gtc',
+order_class: 'bracket',
+take_profit: { limit_price: '1.17778' },
+stop_loss: { stop_price: '1.17778', limit_price: '1.17778' }
+}
