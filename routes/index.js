@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
 router.post('/stock_buy', function(req, res, next){
    console.log('!!! incoming', req.body)
    res.status(200)
-
-
+   res.end()
 })
+
 
 module.exports = router;
