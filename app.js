@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+let PromiseRouter = require('express-promise-router');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -29,15 +30,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.post('/alerts', function(req, res, next){
+let router = PromiseRouter();
+
+router.post('/alerts', async function(req, res, next){
   console.log('!!! headers', req.headers);
   console.log('!!! incoming', req.body);
-  orderMaker(req.body);
+  await orderMaker(req.body);
   res.status(200);
   res.end();
 })
 
-function orderMaker(tradeInfo){
+app.use(router);
+
+// made this with Terra but it did not work
+async function orderMaker(tradeInfo){
   try {
     await alpaca.createOrder({
       symbol: tradeInfo["symbol"], // any valid ticker symbol
@@ -60,7 +66,8 @@ function orderMaker(tradeInfo){
     log(`Order of | ${quantity} ${stock} ${side} | did not go through.`)
     resolve(false)
   }
-  }
+}
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
