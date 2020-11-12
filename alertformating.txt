@@ -31,14 +31,10 @@ order {{strategy.order.action}}
   "qty": "{{strategy.order.contracts}}",
   "time_in_force": "gtc",
   "order_class": "bracket",
-  "take_profit": {
-    "limit_price": "{{strategy.order.price}}"
-  },
-  "stop_loss": {
-    "stop_price": "{{strategy.order.price}}",
-    "limit_price": "{{strategy.order.price}}"
-  }
+  "order_price": "{{strategy.order.price}}"
 }
+
+
 
 
 /////
@@ -52,4 +48,17 @@ time_in_force: 'gtc',
 order_class: 'bracket',
 take_profit: { limit_price: '1.17778' },
 stop_loss: { stop_price: '1.17778', limit_price: '1.17778' }
+}
+
+
+
+
+{
+  "side": "buy",
+  "symbol": "AAPL",
+  "type": "market",
+  "qty": "2",
+  "time_in_force": "gtc",
+  "order_class": "bracket",
+  "order_price": "119.5"
 }

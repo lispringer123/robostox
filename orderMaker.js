@@ -1,17 +1,17 @@
 async function orderMaker(alpaca, tradeInfo){
   await alpaca.createOrder({
-    symbol: tradeInfo["symbol"], // any valid ticker symbol
-    qty: tradeInfo['qty'],
-    side: 'buy',
-    type: 'market',
-    time_in_force: 'gtc',
-    order_class: 'bracket',
+    symbol: tradeInfo.symbol,
+    qty: tradeInfo.qty,
+    side: tradeInfo.side,
+    type: tradeInfo.type,
+    time_in_force: tradeInfo.time_in_force,
+    order_class: tradeInfo.order_class,
     take_profit: {
-      limit_price: tradeInfo["limit_price"] * 1.05,
+      limit_price: tradeInfo.order_price * 1.05,
     },
     stop_loss: {
-      stop_price: tradeInfo["limit_price"] * 0.95,
-      limit_price: tradeInfo["limit_price"] * 0.94
+      stop_price: tradeInfo.order_price * 0.95,
+      limit_price: tradeInfo.order_price * 0.94
     }
   })
 }

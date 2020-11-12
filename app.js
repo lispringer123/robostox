@@ -4,7 +4,8 @@ let PromiseRouter = require('express-promise-router');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+let dotenv = require('dotenv');
+dotenv.config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
