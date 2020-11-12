@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var exphbs = require('express-handlebars');
+
 
 
 /* GET home page. */ //set handlebar routes
